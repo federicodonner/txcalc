@@ -3,7 +3,7 @@ import "./App.css";
 
 export default function App() {
   const [count, setCount] = useState(-1);
-  const [buttons, setButtons] = useState([{ value: 100, color: "COLOR1" }]);
+  const [buttons, setButtons] = useState([]);
   const [pickedColor, setPickedColor] = useState();
 
   const buttonValueRef = useRef();
