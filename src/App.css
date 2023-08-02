@@ -3,98 +3,77 @@ body {
   color: white;
 }
 
+/* SECTIONS */
+
+.ticketValueCreatorContainer {
+  width: 100vw;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.ticketValueContainer {
+  height: 19vh;
+  padding: 3vh;
+}
+
+.ticketColorContainer {
+  height: 25;
+  padding: 3vh;
+}
+
+.currentValuesContainer {
+  height: 35vh;
+}
+
+.addButtonContainer {
+  height: 10vh;
+}
+
+/* SUBSECTIONS */
+
 .colorPickerContainer {
   display: flex;
   width: 80vw;
   margin-left: auto;
   margin-right: auto;
   justify-content: space-around;
-  flex-wrap: wrap;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  flex-wrap: nowrap;
+  margin-top: 1vh;
+  margin-bottom: 3vh;
 }
 
-.colorPickerColor {
-  width: 70px;
-  height: 70px;
-  border: 5px solid black;
-  border-radius: 30px;
-  margin-bottom: 5px;
-}
-
-.createdButtonColor {
-  width: 10px;
-  height: 10px;
-}
-
-.selectedColor {
-  border: 5px solid white;
-}
-
-.colorCOLOR1 {
-  background-color: #ffce2f;
-}
-
-.colorCOLOR2 {
-  background-color: #df9800;
-}
-
-.colorCOLOR3 {
-  background-color: #ad0000;
-}
-
-.colorCOLOR4 {
-  background-color: #885300;
-}
-
-.colorCOLOR5 {
-  background-color: #008883;
-}
-
-.colorCOLOR6 {
-  background-color: #001a9f;
-}
-
-.colorCOLOR7 {
-  background-color: #29da00;
-}
-
-.colorCOLOR8 {
-  background-color: #136700;
-}
-
-.addButton {
-  width: 40vw;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 10px;
-  border: 5px solid white;
-  border-radius: 30px;
-  margin-top: 30px;
-}
-
-.ticketValueCreatorContainer {
-  width: 80vw;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding: 20px;
-  font-size: 1.5em;
-}
+/* ELEMENTS */
 
 .ticketValueCreatorContainer input {
   text-align: center;
   font-size: 2em;
   width: 50vw;
-  margin-top: 10px;
-  padding: 10px 20px;
-  border-radius: 30px;
+  border-radius: 20px;
   border: none;
-  margin-bottom: 20px;
+  padding: 1vh 3vw;
+  margin-top: 2vh;
 }
 
-.currentValuesContainer {
-  margin-top: 20px;
+.colorPickerColor {
+  width: 100%;
+  border: 3px solid black;
+  border-radius: 30px;
+  margin-left: 5px;
+}
+
+.colorPickerColor:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.colorPickerColor.selectedColor {
+  border: 3px solid white;
+}
+
+.createdButtonColor {
+  width: 10px;
+  height: 10px;
 }
 
 .createdButtonColor {
@@ -103,12 +82,31 @@ body {
   width: 2em;
 }
 
+.addButton {
+  width: 40vw;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid white;
+  border-radius: 30px;
+}
+
+.currentValuesLabelsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 60vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* CALCULATOR */
+
 .runningCount {
   width: 72vw;
   margin-left: auto;
   margin-right: auto;
   text-align: right;
-  margin-top: 20px;
+  margin-top: 1vh;
   border: 15px solid white;
   border-radius: 35px;
   padding: 5vw;
@@ -135,13 +133,17 @@ body {
   margin-bottom: 20px;
 }
 
+.resetButtonContainer {
+  height: 10vh;
+}
+
 .resetButton {
   width: 43vw;
   margin-left: auto;
   margin-right: auto;
   border: 5px solid white;
   border-radius: 35px;
-  padding: 13px;
+  padding: 1vh;
   text-align: center;
   font-size: 1.5em;
   margin-top: 3vw;

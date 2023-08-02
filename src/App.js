@@ -3,7 +3,7 @@ import "./App.css";
 
 export default function App() {
   const [count, setCount] = useState(-1);
-  const [buttons, setButtons] = useState([]);
+  const [buttons, setButtons] = useState([{ value: 100, color: "COLOR1" }]);
   const [pickedColor, setPickedColor] = useState();
 
   const buttonValueRef = useRef();
@@ -19,53 +19,63 @@ export default function App() {
     COLOR8: "136700",
   };
 
-  useEffect(() => {}, []);
-
+  // Whenever a new button is created, the color picker is reset
+  // and the value text is reset
   useEffect(() => {
+    buttonValueRef.current.value = "";
     setPickedColor();
   }, [buttons]);
 
-  function updateCount(numberToAdd) {
-    setCount(count + numberToAdd);
-  }
-
-  function reset() {
-    setCount(0);
-  }
-
+  // Function called when a new button is added
   function addButton() {
+    // If the text field doesn't have a value, exit
     if (!buttonValueRef?.current?.value) {
       return;
     }
 
+    // If no color is picked, exit
     if (!pickedColor) {
       return;
     }
 
+    // Insert the new butotn's info in the button's array
     let currentButtons = JSON.parse(JSON.stringify(buttons));
     currentButtons.push({
       value: parseInt(buttonValueRef.current.value),
       color: pickedColor,
     });
-    buttonValueRef.current.value = "";
     setButtons(currentButtons);
   }
 
+  // Update count adding the value of the pressed button
+  function updateCount(numberToAdd) {
+    setCount(count + numberToAdd);
+  }
+
+  // Reset ticket count
+  function reset() {
+    setCount(0);
+  }
+
+  // Start the calculator
   function start() {
     if (buttons.length !== 0) {
       setCount(0);
       return;
     }
+    // If there aren't buttons display the alert
     alert("You need to create at least one button");
   }
 
   return (
     <div className="App">
       {count < 0 && (
-        <div>
-          <div className="ticketValueCreatorContainer">
+        <div className="ticketValueCreatorContainer">
+          <div className="ticketValueContainer">
             <div>Add ticket value</div>
             <input type="number" ref={buttonValueRef} />
+          </div>
+          <div className="ticketColorContainer">
             <div>Pick a color</div>
             <div className="colorPickerContainer">
               {Object.keys(COLORS).map((color, i) => {
@@ -73,9 +83,12 @@ export default function App() {
                   <div
                     className={
                       pickedColor === color
-                        ? `colorPickerColor color${color} selectedColor`
-                        : `colorPickerColor color${color}`
+                        ? `colorPickerColor selectedColor`
+                        : `colorPickerColor`
                     }
+                    style={{
+                      backgroundColor: `#${COLORS[color]}`,
+                    }}
                     onClick={() => {
                       setPickedColor(color);
                     }}
@@ -87,21 +100,26 @@ export default function App() {
             <div className="addButton" onClick={addButton}>
               Add
             </div>
-            <div>
-              <div className="currentValuesContainer">
-                <div>Current values</div>
-                {buttons.map((button, index) => {
-                  return (
-                    <div key={index}>
-                      {button.value}{" "}
-                      <div
-                        className={`createdButtonColor color${button.color}`}
-                      ></div>
-                    </div>
-                  );
-                })}
-              </div>
+          </div>
+          <div className="currentValuesContainer">
+            <div>Current values</div>
+            <div className="currentValuesLabelsContainer">
+              {buttons.map((button, index) => {
+                return (
+                  <div key={index}>
+                    {button.value}{" "}
+                    <div
+                      className={`createdButtonColor`}
+                      style={{
+                        backgroundColor: `#${COLORS[button.color]}`,
+                      }}
+                    ></div>
+                  </div>
+                );
+              })}
             </div>
+          </div>
+          <div className="addButtonContainer">
             <div className="addButton" onClick={start}>
               Start
             </div>
@@ -109,9 +127,11 @@ export default function App() {
         </div>
       )}
       {count >= 0 && (
-        <div>
-          <div className="resetButton" onClick={reset}>
-            Clear
+        <>
+          <div className="resetButtonContainer">
+            <div className="resetButton" onClick={reset}>
+              Clear
+            </div>
           </div>
           <div className="runningCount">{count}</div>
           <div className="valueButtonContainer">
@@ -133,7 +153,7 @@ export default function App() {
               );
             })}
           </div>
-        </div>
+        </>
       )}
     </div>
   );
